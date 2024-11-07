@@ -11,7 +11,10 @@ export default function Home() {
       <main className="bg-gray-100 p-8">
         <section className="flex">
           <RubberDucky />
-          <RubberDuckyWords />
+          <RubberDuckyWords
+            heading="Want to be a better dev?"
+            paragraph="Answer my questions without external support to truly deepen your learning."
+          />
         </section>
 
         <hr></hr>

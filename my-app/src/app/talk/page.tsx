@@ -1,84 +1,153 @@
 "use client";
 import RubberDucky from "../components/RubberDucky";
 import RubberDuckyWords from "../components/RubberDuckyWords";
-import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Home() {
   const [stage, setStage] = useState(0);
+  const [showTopic, setShowTopic] = useState(true);
+  const [topic, setTopic] = useState("");
+
+  const [showAnswer, setShowAnswer] = useState(true);
+  const [answer, setAnswer] = useState("");
+
+  const [showReflection, setShowReflection] = useState(true);
+  const [reflection, setReflection] = useState("");
+
+  const [duckHeading, setDuckHeading] = useState(
+    "Tell me what you want to learn more about."
+  );
+  const [duckParagraph, setDuckParagraph] = useState(
+    "Answer my questions without external support to truly deepen your learning."
+  );
+  const handleTopicChange = (event) => {
+    setTopic(event.target.value); // Update the state with the new input value
+  };
+  const handleAnswerChange = (event) => {
+    setAnswer(event.target.value); // Update the state with the new input value
+  };
+  const handleReflectionChange = (event) => {
+    setAnswer(event.target.value); // Update the state with the new input value
+  };
+
+  const handleEnteredTopic = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter" || "button" in event) {
+      setDuckHeading(`Tell me about ${topic}`);
+      setDuckParagraph(`Do the best you can.`);
+      setShowTopic(false);
+    }
+  };
+  const handleEnteredAnswer = (
+    event: React.KeyboardEvent<HTMLInputElement>
+  ) => {
+    if ("button" in event) {
+      setShowAnswer(false);
+      setDuckHeading(`Nice work. Now assess your answer.`);
+      setDuckParagraph(
+        `Write down something you did well and something you'd like to improve on your answer. You can use the internet`
+      );
+    }
+  };
+  const handleEnteredReflection = (
+    event: React.KeyboardEvent<HTMLInputElement>
+  ) => {
+    if ("button" in event) {
+      setShowReflection(false);
+      setDuckHeading(`Well done.`);
+      setDuckParagraph(`I'm proud of you.`);
+    }
+  };
+
   return (
     <>
       <main className="bg-gray-100 p-8">
         <section className="flex">
           <RubberDucky />
-          <RubberDuckyWords />
+          <RubberDuckyWords heading={duckHeading} paragraph={duckParagraph} />
         </section>
 
         <hr></hr>
-
-        <section className="mb-12">
-          <h2 className="text-2xl font-bold text-gray-800 mb-4">
-            Want to be a better dev?
-          </h2>
-          <p className="text-lg text-gray-600">
-            Answer my questions without external support to truly deepen your
-            learning.
-          </p>
-        </section>
+        {showTopic ? (
+          <section className="text-black">
+            <label htmlFor="topicInput" className="block text-lg mb-2">
+              Enter Text:
+            </label>
+            <input
+              type="text"
+              id="topicInput"
+              value={topic}
+              onChange={handleTopicChange}
+              onKeyDown={handleEnteredTopic}
+              placeholder="Type something..."
+              className="border p-2 rounded"
+            />
+            <button className="bg-green-500" onClick={handleEnteredTopic}>
+              Enter Topic
+            </button>
+          </section>
+        ) : (
+          <>
+            {showAnswer ? (
+              <div>
+                <section className="text-black">
+                  <label htmlFor="answerInput" className="block text-lg mb-2">
+                    Enter asd:
+                  </label>
+                  <textarea
+                    id="answerInput"
+                    value={answer}
+                    onChange={handleAnswerChange}
+                    placeholder="Type something..."
+                    rows={4} // Sets the number of rows (lines) visible
+                    cols={50} // Sets the width (number of columns) of the textarea
+                    className="border p-2 rounded w-full"
+                  />
+                  <button
+                    className="bg-green-500"
+                    onClick={handleEnteredAnswer}
+                  >
+                    Enter Answer
+                  </button>
+                </section>
+              </div>
+            ) : (
+              <>
+                {showReflection ? (
+                  <div>
+                    <section className="text-black">
+                      <label
+                        htmlFor="reflectionInput"
+                        className="block text-lg mb-2"
+                      >
+                        Enter reflection:
+                      </label>
+                      <textarea
+                        id="reflectionInput"
+                        value={reflection}
+                        onChange={handleReflectionChange}
+                        placeholder="Type something..."
+                        rows={4} // Sets the number of rows (lines) visible
+                        cols={50} // Sets the width (number of columns) of the textarea
+                        className="border p-2 rounded w-full"
+                      />
+                      <button
+                        className="bg-green-500"
+                        onClick={handleEnteredReflection}
+                      >
+                        Enter reflectionss
+                      </button>
+                    </section>
+                  </div>
+                ) : (
+                  <div>Congrats</div>
+                )}
+              </>
+            )}
+          </>
+        )}
 
         <hr></hr>
-
-        <section className="mb-12">
-          <h2 className="text-2xl font-bold text-gray-800 mb-4">
-            How it works
-          </h2>
-          <p className="text-lg text-gray-600">
-            Rubber Duck Learning forces you to engage in active recall and
-            verbalization - building your neural connections for faster
-            knowledge retrieval and helping you identify your knowledge gaps so
-            that you can become the developer you always wanted to be.
-          </p>
-        </section>
-        <hr></hr>
-
-        <section className="mb-12">
-          <h2 className="text-2xl font-bold text-gray-800 mb-4">
-            4-step process
-          </h2>
-          <ul className="list-inside list-disc text-lg text-gray-600 space-y-2">
-            <li>Choose a question or prompt that is meaningful to you.</li>
-            <li>Write your best answer to it without external help.</li>
-            <li>
-              Create or view an existing model answer that you can refine later.
-            </li>
-            <li>
-              Record a short comment about what you did well and what you could
-              improve on.
-            </li>
-          </ul>
-        </section>
-        <hr></hr>
-
-        <section className="mb-12">
-          <h2 className="text-2xl font-bold text-gray-800 mb-4">
-            Why I built Rubber Duck Learning
-          </h2>
-          <p className="text-lg text-gray-600">
-            Developers often fail to build a deep understanding of the
-            technologies they use. We build fast and we speedily complete
-            courses; we enjoy the ride, but sometimes neglect taking the time to
-            check (and reinforce) what we’ve really learned along the way.
-          </p>
-        </section>
-        <Link href="/talk">
-          <button className="px-6 py-3 bg-green-600 text-white rounded-lg shadow-lg hover:bg-green-700 transition-all">
-            Get started
-          </button>
-        </Link>
       </main>
-      <nav className="bg-blue-600 text-white p-4 text-center">
-        <p className="text-lg font-medium">NAV</p>
-      </nav>
     </>
   );
 }

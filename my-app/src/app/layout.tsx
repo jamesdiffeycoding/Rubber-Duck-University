@@ -22,9 +22,11 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body>
+      <body className="bg-gray-100 min-h-screen">
         <Header></Header>
-        {children}
+        <div className="flex justify-center">
+          <div className="max-w-[1000px]">{children}</div>
+        </div>
       </body>
     </html>
   );

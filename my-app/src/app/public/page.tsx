@@ -11,14 +11,17 @@ export default function Home() {
       <main className="bg-gray-100 p-8">
         <section className="flex">
           <RubberDucky />
-          <RubberDuckyWords />
+          <RubberDuckyWords
+            heading="Want to be a better dev?"
+            paragraph="Answer my questions without external support to truly deepen your learning."
+          />
         </section>
 
         <hr></hr>
 
         <section className="mb-12">
           <p className="text-lg text-gray-600">
-            Rubber Duck Learning forces you to engage in active recall and
+            Rubber Duck Learning encourages you to engage in active recall and
             verbalization - building your neural connections for faster
             knowledge retrieval and helping you identify your knowledge gaps so
             that you can become the developer you always wanted to be.
