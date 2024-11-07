@@ -1,6 +1,6 @@
 "use client";
-import RubberDucky from "./components/RubberDucky";
-import RubberDuckyWords from "./components/RubberDuckyWords";
+import RubberDucky from "../components/RubberDucky";
+import RubberDuckyWords from "../components/RubberDuckyWords";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -17,11 +17,12 @@ export default function Home() {
         <hr></hr>
 
         <section className="mb-12">
+          <h2 className="text-2xl font-bold text-gray-800 mb-4">
+            Want to be a better dev?
+          </h2>
           <p className="text-lg text-gray-600">
-            Rubber Duck Learning forces you to engage in active recall and
-            verbalization - building your neural connections for faster
-            knowledge retrieval and helping you identify your knowledge gaps so
-            that you can become the developer you always wanted to be.
+            Answer my questions without external support to truly deepen your
+            learning.
           </p>
         </section>
 

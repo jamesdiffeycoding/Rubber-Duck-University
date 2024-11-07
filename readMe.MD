@@ -1,6 +1,11 @@
 # Read me file for Rubber Duck Learning project
 
-# Commit log
+# Work log
 
-- create readme
-- create next JS template with // npx create-next-app@latest
+## 7th November
+
+### Main branch ---
+
+- COMMIT: create readme
+- COMMIT: create next JS template with // npx create-next-app@latest
+- DEPLOY: deployed to Vercel hosting site

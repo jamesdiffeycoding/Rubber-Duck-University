@@ -1,6 +1,6 @@
 "use client";
-import RubberDucky from "./components/RubberDucky";
-import RubberDuckyWords from "./components/RubberDuckyWords";
+import RubberDucky from "../components/RubberDucky";
+import RubberDuckyWords from "../components/RubberDuckyWords";
 import Link from "next/link";
 import { useState } from "react";
 
