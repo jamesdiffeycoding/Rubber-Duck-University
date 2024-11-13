@@ -2,7 +2,7 @@
 import RubberDucky from "../components/RubberDucky";
 import RubberDuckyWords from "../components/RubberDuckyWords";
 import { useState, useEffect } from "react";
-
+import Timer from "../components/Timer";
 export default function Home() {
   const [showTopic, setShowTopic] = useState(true);
   const [topic, setTopic] = useState("");
@@ -80,6 +80,7 @@ export default function Home() {
                   <label htmlFor="answerInput" className="block text-lg mb-2">
                     Enter answer:
                   </label>
+                  <Timer />
                   <textarea
                     id="answerInput"
                     value={answer}
