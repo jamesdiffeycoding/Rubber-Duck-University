@@ -76,9 +76,6 @@ export default function Home() {
           </button>
         </Link>
       </main>
-      <nav className="bg-blue-600 text-white p-4 text-center">
-        <p className="text-lg font-medium">NAV</p>
-      </nav>
     </>
   );
 }

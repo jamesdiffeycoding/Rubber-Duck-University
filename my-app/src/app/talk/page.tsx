@@ -91,7 +91,7 @@ export default function Home() {
               <div>
                 <section className="text-black">
                   <label htmlFor="answerInput" className="block text-lg mb-2">
-                    Enter asd:
+                    Enter answer:
                   </label>
                   <textarea
                     id="answerInput"
@@ -134,7 +134,7 @@ export default function Home() {
                         className="bg-green-500"
                         onClick={handleEnteredReflection}
                       >
-                        Enter reflectionss
+                        Enter reflections
                       </button>
                     </section>
                   </div>

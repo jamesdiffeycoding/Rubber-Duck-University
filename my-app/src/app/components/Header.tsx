@@ -1,5 +1,8 @@
+"use client";
 import Link from "next/link";
 import HeaderLink from "./HeaderLink";
+
+import ThemeToggle from "./ThemeToggle";
 export default function Header() {
   return (
     <>
@@ -19,6 +22,7 @@ export default function Header() {
               <HeaderLink pageFolder={"/public"} pageName={"About"} />
               <HeaderLink pageFolder={"/talk"} pageName={"Talk"} />
               <HeaderLink pageFolder={"/login"} pageName={"Login"} />
+              <ThemeToggle />
             </div>
           </div>
         </section>

@@ -45,14 +45,11 @@ export default function Home() {
 
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-gray-800 mb-4">
-            4-step process
+            3-step process
           </h2>
           <ul className="list-inside list-disc text-lg text-gray-600 space-y-2">
             <li>Choose a question or prompt that is meaningful to you.</li>
             <li>Write your best answer to it without external help.</li>
-            <li>
-              Create or view an existing model answer that you can refine later.
-            </li>
             <li>
               Record a short comment about what you did well and what you could
               improve on.
@@ -78,9 +75,6 @@ export default function Home() {
           </button>
         </Link>
       </main>
-      <nav className="bg-blue-600 text-white p-4 text-center">
-        <p className="text-lg font-medium">NAV</p>
-      </nav>
     </>
   );
 }
