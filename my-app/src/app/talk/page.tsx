@@ -4,15 +4,11 @@ import RubberDuckyWords from "../components/RubberDuckyWords";
 import { useState, useEffect } from "react";
 
 export default function Home() {
-  const [stage, setStage] = useState(0);
   const [showTopic, setShowTopic] = useState(true);
   const [topic, setTopic] = useState("");
 
   const [showAnswer, setShowAnswer] = useState(true);
   const [answer, setAnswer] = useState("");
-
-  const [showReflection, setShowReflection] = useState(true);
-  const [reflection, setReflection] = useState("");
 
   const [duckHeading, setDuckHeading] = useState(
     "Tell me what you want to learn more about."
@@ -42,19 +38,10 @@ export default function Home() {
   ) => {
     if ("button" in event) {
       setShowAnswer(false);
-      setDuckHeading(`Nice work. Now assess your answer.`);
+      setDuckHeading(`Congrats.`);
       setDuckParagraph(
-        `Write down something you did well and something you'd like to improve on your answer. You can use the internet`
+        `Congratulations, you have become a 1% better developer - and helped Sammy the duck to graduate from the University of Duckminster.`
       );
-    }
-  };
-  const handleEnteredReflection = (
-    event: React.KeyboardEvent<HTMLInputElement>
-  ) => {
-    if ("button" in event) {
-      setShowReflection(false);
-      setDuckHeading(`Well done.`);
-      setDuckParagraph(`I'm proud of you.`);
     }
   };
 
@@ -111,37 +98,7 @@ export default function Home() {
                 </section>
               </div>
             ) : (
-              <>
-                {showReflection ? (
-                  <div>
-                    <section className="text-black">
-                      <label
-                        htmlFor="reflectionInput"
-                        className="block text-lg mb-2"
-                      >
-                        Enter reflection:
-                      </label>
-                      <textarea
-                        id="reflectionInput"
-                        value={reflection}
-                        onChange={handleReflectionChange}
-                        placeholder="Type something..."
-                        rows={4} // Sets the number of rows (lines) visible
-                        cols={50} // Sets the width (number of columns) of the textarea
-                        className="border p-2 rounded w-full"
-                      />
-                      <button
-                        className="bg-green-500"
-                        onClick={handleEnteredReflection}
-                      >
-                        Enter reflections
-                      </button>
-                    </section>
-                  </div>
-                ) : (
-                  <div>Congrats</div>
-                )}
-              </>
+              <div>Congrats</div>
             )}
           </>
         )}
