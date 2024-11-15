@@ -2,61 +2,79 @@
 import RubberDucky from "../components/RubberDucky";
 import { useState } from "react";
 import Timer from "../components/Timer";
-import { useTheme } from "../ThemeContext"; // Ensure the theme context is imported
+import { useTheme } from "../ThemeContext";
 import HeaderLink from "../components/HeaderLink";
+
 export default function Home() {
-  const [showTopic, setShowTopic] = useState(true);
-  const [showTips, setShowTips] = useState(false);
-  const [topic, setTopic] = useState("");
-  const [showAnswer, setShowAnswer] = useState(true);
-  const [answer, setAnswer] = useState("");
+  const [showTopic, setShowTopic] = useState<boolean>(true);
+  const [showTips, setShowTips] = useState<boolean>(false);
+  const [topic, setTopic] = useState<string>("");
+  const [showAnswer, setShowAnswer] = useState<boolean>(true);
+  const [answer, setAnswer] = useState<string>("");
 
   // Get the current theme from the ThemeContext
-  const { isDarkMode } = useTheme();
+  const { isDarkMode }: { isDarkMode: boolean } = useTheme();
 
   // Event handlers
-  const handleShowTips = (event) => {
+  const handleShowTips = (event: React.MouseEvent<HTMLButtonElement>) => {
     setShowTips(!showTips);
   };
-  const handleTopicChange = (event) => {
+
+  const handleTopicChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setTopic(event.target.value);
   };
 
-  const handleAnswerChange = (event) => {
+  const handleAnswerChange = (
+    event: React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
     setAnswer(event.target.value);
   };
 
-  const handleEnteredTopic = (event) => {
-    if (event.key === "Enter" || "button" in event) {
+  // Handle the Enter key press inside the textarea to submit the topic
+  const handleEnteredTopic = (
+    event: React.KeyboardEvent<HTMLTextAreaElement>
+  ) => {
+    if (event.key === "Enter") {
       setShowTopic(false);
     }
   };
 
-  const handleEnteredAnswer = () => {
+  // Handle the click on the confirm button
+  const handleEnteredAnswerClick = (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
     setShowAnswer(false);
     pushTopicAndAnswer(topic, answer);
   };
 
-  const pushTopicAndAnswer = (topic, answer) => {
-    // Create an object with the topic and answer
+  // Handle the Enter key press to confirm the answer
+  const handleEnteredAnswerKeyPress = (
+    event: React.KeyboardEvent<HTMLTextAreaElement>
+  ) => {
+    if (event.key === "Enter") {
+      setShowAnswer(false);
+      pushTopicAndAnswer(topic, answer);
+    }
+  };
+
+  // Save the topic and answer to localStorage
+  const pushTopicAndAnswer = (topic: string, answer: string): void => {
     const data = {
       topic: topic,
       answer: answer,
-      date: new Date().toISOString(), // Store the current date and time in ISO format
+      date: new Date().toISOString(),
     };
 
-    // Check if there's already an existing topic-answer object in localStorage
-    const existingData =
-      JSON.parse(localStorage.getItem("topicAnswerData")) || [];
+    const existingData: { topic: string; answer: string; date: string }[] =
+      JSON.parse(localStorage.getItem("topicAnswerData") || "[]");
 
-    // Add the new data to the existing data array
     existingData.push(data);
 
-    // Save the updated array back to localStorage
     localStorage.setItem("topicAnswerData", JSON.stringify(existingData));
 
     console.log("Data saved to localStorage:", existingData);
   };
+
   return (
     <main
       className={`flex-1 ${
@@ -112,7 +130,7 @@ export default function Home() {
                 id="topicInput"
                 value={topic}
                 onChange={handleTopicChange}
-                onKeyDown={handleEnteredTopic}
+                onKeyDown={handleEnteredTopic} // Handle Enter key press to submit topic
                 placeholder="Enter a topic..."
                 className="text-2xl text-center justify-center border-none rounded-xl resize-none z-10 placeholder-white bg-transparent hover:bg-green-900 hover:bg-opacity-50 text-white h-[45%]  aspect-square p-2 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
                 rows={4}
@@ -123,7 +141,7 @@ export default function Home() {
             <div /* BOTTOM HALF */>
               <section className="w-full flex-1 flex items-center justify-center">
                 <button
-                  onClick={handleEnteredTopic}
+                  onClick={handleEnteredAnswerClick} // Handle button click to submit answer
                   className="bg-emerald-700 hover:bg-emerald-600 text-white p-8 m-8 rounded-lg shadow-lg transition-alls"
                 >
                   Confirm
@@ -165,9 +183,10 @@ export default function Home() {
                   id="answerInput"
                   value={answer}
                   onChange={handleAnswerChange}
+                  onKeyDown={handleEnteredAnswerKeyPress} // Handle Enter key press to submit answer
                   placeholder="Type something..."
                   rows={4}
-                  className={`flex-1 w-[80%] border p-2 rounded w-full ${
+                  className={`flex-1 w-[80%] border p-2 rounded ${
                     isDarkMode
                       ? "border-white text-white bg-gray-800"
                       : "border-gray-700 text-gray-900 bg-emerald-300"
@@ -176,7 +195,7 @@ export default function Home() {
                 {/* 3 */}
                 <section className=" w-full flex items-center justify-center">
                   <button
-                    onClick={handleEnteredAnswer}
+                    onClick={handleEnteredAnswerClick} // Handle button click to submit answer
                     className="bg-emerald-700 hover:bg-emerald-600 text-white p-8 m-8 rounded-lg shadow-lg transition-alls"
                   >
                     Confirm

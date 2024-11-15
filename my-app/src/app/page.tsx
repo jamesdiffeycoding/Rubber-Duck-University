@@ -3,7 +3,19 @@ import Link from "next/link";
 import { useTheme } from "./ThemeContext"; // Import useTheme hook
 import RubberDucky from "./components/RubberDucky";
 
-const BannerSection = ({ children, isDarkMode, className }) => (
+// Define the types for the BannerSection props
+interface BannerSectionProps {
+  children: React.ReactNode;
+  isDarkMode: boolean;
+  className?: string;
+}
+
+// BannerSection component
+const BannerSection = ({
+  children,
+  isDarkMode,
+  className,
+}: BannerSectionProps) => (
   <section
     className={`${className} ${
       isDarkMode
@@ -20,7 +32,21 @@ const BannerSection = ({ children, isDarkMode, className }) => (
   </section>
 );
 
-const CircleImageAndText = ({ imageSrc, altText, description, isDarkMode }) => (
+// Define the types for CircleImageAndText props
+interface CircleImageAndTextProps {
+  imageSrc: string;
+  altText: string;
+  description: string;
+  isDarkMode: boolean;
+}
+
+// CircleImageAndText component
+const CircleImageAndText = ({
+  imageSrc,
+  altText,
+  description,
+  isDarkMode,
+}: CircleImageAndTextProps) => (
   <div className="flex flex-col items-center text-center">
     <div
       className="mx-auto mb-4 rounded-full"
@@ -41,6 +67,7 @@ const CircleImageAndText = ({ imageSrc, altText, description, isDarkMode }) => (
   </div>
 );
 
+// Home component
 export default function Home() {
   const { isDarkMode } = useTheme(); // Get dark mode status
 
