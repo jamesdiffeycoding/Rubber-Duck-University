@@ -113,7 +113,7 @@ export default function Home() {
           <br />
           <p className="text-lg">
             It is a simple technique that can feel like{" "}
-            <strong>hard work</strong> - but that's where the growth is.
+            <strong>hard work</strong> - but that&apos;s where the growth is.
           </p>
         </div>
       </section>

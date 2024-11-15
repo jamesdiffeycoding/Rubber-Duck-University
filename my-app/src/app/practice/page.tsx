@@ -39,21 +39,14 @@ export default function Home() {
   };
 
   // Handle the click on the confirm button
-  const handleEnteredAnswerClick = (
+  const handleEnteredTopicClick = (
     event: React.MouseEvent<HTMLButtonElement>
   ) => {
+    setShowTopic(false);
+  };
+  const handleEnteredAnswer = (event: React.MouseEvent<HTMLButtonElement>) => {
     setShowAnswer(false);
     pushTopicAndAnswer(topic, answer);
-  };
-
-  // Handle the Enter key press to confirm the answer
-  const handleEnteredAnswerKeyPress = (
-    event: React.KeyboardEvent<HTMLTextAreaElement>
-  ) => {
-    if (event.key === "Enter") {
-      setShowAnswer(false);
-      pushTopicAndAnswer(topic, answer);
-    }
   };
 
   // Save the topic and answer to localStorage
@@ -140,7 +133,7 @@ export default function Home() {
             <div /* BOTTOM HALF */>
               <section className="w-full flex-1 flex items-center justify-center">
                 <button
-                  onClick={handleEnteredAnswerClick} // Handle button click to submit answer
+                  onClick={handleEnteredTopicClick} // Handle button click to submit answer
                   className="bg-emerald-700 hover:bg-emerald-600 text-white p-8 m-8 rounded-lg shadow-lg transition-alls"
                 >
                   Confirm
@@ -158,7 +151,7 @@ export default function Home() {
                   <div>
                     <button
                       onClick={handleShowTips}
-                      className="bg-emerald-500 roudned-xl p-2 m-2"
+                      className="rounded-2xl bg-emerald-500 hover:bg-emerald-700 roudned-xl p-2 m-2"
                     >
                       {showTips ? "hide tips" : "show tips"}
                     </button>
@@ -182,7 +175,6 @@ export default function Home() {
                   id="answerInput"
                   value={answer}
                   onChange={handleAnswerChange}
-                  onKeyDown={handleEnteredAnswerKeyPress} // Handle Enter key press to submit answer
                   placeholder="Type something..."
                   rows={4}
                   className={`flex-1 w-[80%] border p-2 rounded ${
@@ -194,7 +186,7 @@ export default function Home() {
                 {/* 3 */}
                 <section className=" w-full flex items-center justify-center">
                   <button
-                    onClick={handleEnteredAnswerClick} // Handle button click to submit answer
+                    onClick={handleEnteredAnswer} // Handle button click to submit answer
                     className="bg-emerald-700 hover:bg-emerald-600 text-white p-8 m-8 rounded-lg shadow-lg transition-alls"
                   >
                     Confirm
@@ -204,9 +196,11 @@ export default function Home() {
             ) : (
               <div className="text-center">
                 {/* FINISHED */}
-                <p>Congrats!</p>
+                <p className={`${isDarkMode ? "text-white" : "text-black"}`}>
+                  Congrats!
+                </p>
                 <div className="flex justify-center">
-                  <div className="w-[400px] bg-emerald-900 rounded-xl">
+                  <div className="w-[400px] bg-emerald-900 rounded-xl text-white">
                     <HeaderLink
                       pageFolder="/graduates"
                       pageName="See the ducks you've helped graduate"
