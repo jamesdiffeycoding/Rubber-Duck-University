@@ -15,7 +15,7 @@ export default function Home() {
   const { isDarkMode }: { isDarkMode: boolean } = useTheme();
 
   // Event handlers
-  const handleShowTips = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleShowTips = () => {
     setShowTips(!showTips);
   };
 
@@ -39,12 +39,10 @@ export default function Home() {
   };
 
   // Handle the click on the confirm button
-  const handleEnteredTopicClick = (
-    event: React.MouseEvent<HTMLButtonElement>
-  ) => {
+  const handleEnteredTopicClick = () => {
     setShowTopic(false);
   };
-  const handleEnteredAnswer = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleEnteredAnswer = () => {
     setShowAnswer(false);
     pushTopicAndAnswer(topic, answer);
   };
