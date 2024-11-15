@@ -93,7 +93,7 @@ export default function Home() {
             </div>
           </div>
           <ul className="list-disc list-inside">
-            <li>Don't use the internet</li>
+            <li>Don&apos;t use the internet</li>
             <li>Express things in your own words</li>
             <li>Stay focused on the most important details</li>
             <li>Focus on clarity of your expression</li>
