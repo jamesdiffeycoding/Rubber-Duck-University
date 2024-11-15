@@ -8,7 +8,7 @@ interface HeaderLinkProps {
 export default function HeaderLink({ pageFolder, pageName }: HeaderLinkProps) {
   return (
     <Link href={pageFolder}>
-      <button className="px-6 py-3 rounded-lg  hover:bg-blue-700 transition-all">
+      <button className="px-6 py-3 rounded-lg hover:bg-emerald-700 transition-all">
         {pageName}
       </button>
     </Link>

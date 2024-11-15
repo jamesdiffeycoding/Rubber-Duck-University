@@ -1,7 +1,7 @@
 export default function RubberDucky() {
   return (
     <>
-      <div className="mx-auto mb-8">
+      <div className="">
         <img
           src={`/rubberducky.png`}
           alt="Rubber Ducky"

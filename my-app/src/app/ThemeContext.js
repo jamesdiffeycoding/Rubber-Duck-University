@@ -1,5 +1,4 @@
 "use client";
-
 import { createContext, useState, useEffect, useContext } from "react";
 
 // Create a Context for the theme (dark/light)
@@ -18,7 +17,7 @@ export const ThemeProvider = ({ children }) => {
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
     if (savedTheme) {
-      setIsDarkMode(savedTheme === "dark");
+      setIsDarkMode(savedTheme === "dark"); // Fix to compare against "dark"
     }
   }, []);
 
@@ -26,7 +25,7 @@ export const ThemeProvider = ({ children }) => {
   const toggleTheme = () => {
     setIsDarkMode((prev) => {
       const newTheme = !prev;
-      localStorage.setItem("theme", newTheme ? "dark" : "light");
+      localStorage.setItem("theme", newTheme ? "dark" : "light"); // Save "dark" or "light" to localStorage
       return newTheme;
     });
   };

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 export default function Timer() {
-  const [time, setTime] = useState(62);
+  const [time, setTime] = useState(300);
 
   useEffect(() => {
     if (time <= 0) return; // Stop when timer reaches 0
@@ -13,7 +13,7 @@ export default function Timer() {
   }, [time]);
 
   return (
-    <section className="flex justify-end text-right w-full">
+    <section className="flex justify-end items-center text-right w-full">
       <div className="bg-slate-500 p-2 rounded-lg justify-right text-right align-right">
         <h3>Guide timer: </h3>
         {Math.floor(time / 60)} : {time % 60}
