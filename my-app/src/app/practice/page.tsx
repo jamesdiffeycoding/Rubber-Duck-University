@@ -1,5 +1,4 @@
 "use client";
-import RubberDucky from "../components/RubberDucky";
 import { useState } from "react";
 import Timer from "../components/Timer";
 import { useTheme } from "../ThemeContext";

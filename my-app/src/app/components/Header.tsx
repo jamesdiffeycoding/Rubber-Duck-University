@@ -5,7 +5,7 @@ import { useTheme } from "../ThemeContext"; // Make sure to import the useTheme 
 import ThemeToggle from "./ThemeToggle";
 
 export default function Header() {
-  const { isDarkMode, toggleTheme } = useTheme(); // Get theme state and toggle function from context
+  const { isDarkMode } = useTheme(); // Get theme state and toggle function from context
 
   return (
     <>
