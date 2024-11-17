@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import { useTheme } from "../ThemeContext";
 import { TopicAnswerData } from "../helpers/interfaces";
 import { getRelativeTime } from "../helpers/generalFunctions";
 const GraduateDuckCardHeading = ({
