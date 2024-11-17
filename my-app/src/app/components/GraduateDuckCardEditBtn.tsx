@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import { useTheme } from "../ThemeContext";
 import { TopicAnswerData } from "../helpers/interfaces";
 const GraduateDuckCardEditBtn = ({
   index,
@@ -11,8 +10,6 @@ const GraduateDuckCardEditBtn = ({
   category: keyof TopicAnswerData;
   handleToggleEdit: (index: number, category: keyof TopicAnswerData) => void;
 }) => {
-  const { isDarkMode } = useTheme();
-
   return (
     <section className="flex justify-center">
       <button

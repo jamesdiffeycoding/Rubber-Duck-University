@@ -1,6 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import { getData } from "../helpers/databaseFunctions";
+import React from "react";
 import { useTheme } from "../ThemeContext";
 
 const GraduateDuckCircleImage = ({ index }: { index: number }) => {
