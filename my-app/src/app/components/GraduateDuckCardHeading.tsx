@@ -12,9 +12,6 @@ const GraduateDuckCardHeading = ({
   category: keyof TopicAnswerData;
   title: string;
 }) => {
-  const { isDarkMode } = useTheme();
-  console.log(item);
-
   return (
     <section>
       <div className="flex items-center pb-2 pt-2 text-gray-400 text-xs min-w-[6rem]">
