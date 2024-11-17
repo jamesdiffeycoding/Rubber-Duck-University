@@ -2,9 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { useTheme } from "../ThemeContext";
 import { TopicAnswerData } from "../helpers/interfaces";
-import { getRelativeTime } from "../helpers/generalFunctions";
 import { getData } from "../helpers/databaseFunctions";
-import GraduateDuckCircleImage from "../components/GraduateDuckCircleImage";
 import GraduateDuckCard from "../components/GraduateDuckCard";
 const DisplayStoredData = () => {
   const { isDarkMode } = useTheme();
@@ -15,8 +13,8 @@ const DisplayStoredData = () => {
     number | null
   >(null);
   const [categoryBeingEdited, setCategoryBeingEdited] = useState<
-    keyof TopicAnswerData | ""
-  >("");
+    keyof TopicAnswerData
+  >("placeholderForEditing");
 
   const [textBeingEdited, setTextBeingEdited] = useState<string>("");
 
@@ -43,7 +41,7 @@ const DisplayStoredData = () => {
   };
   function resetStatesForNextEdit() {
     setIndexOfCardBeingEdited(null);
-    setCategoryBeingEdited(""); // Now valid to reset to empty string
+    setCategoryBeingEdited("placeholderForEditing"); // reset to default placeholder
     setTextBeingEdited("");
   }
   console.log(storedData);
@@ -55,9 +53,9 @@ const DisplayStoredData = () => {
           : "bg-emerald-300 text-gray-900 border-gray-300"
       }`}
     >
+      <h2 className="text-2xl font-semibold mb-4">Duck graduates</h2>
       {storedData.length !== 0 ? (
         <section>
-          <h2 className="text-2xl font-semibold mb-4">Duck graduates</h2>
           <p>
             You have helped <strong>{storedData.length} </strong> ducks to
             graduate from their degree.

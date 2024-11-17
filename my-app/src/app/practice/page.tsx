@@ -71,38 +71,37 @@ export default function Home() {
         isDarkMode ? "bg-gray-900 text-white" : "bg-emerald-200 text-gray-900"
       }`}
     >
-      {showTips && (
-        <div
-          className={`absolute rounded-2xl p-[5%] m-[5%] w-[90%] ${
-            isDarkMode
-              ? "bg-black text-white border-white border"
-              : "bg-emerald-800 text-white"
-          }`}
-        >
-          <div className={`flex justify-between`}>
-            <h2 className="text-2xl pb-4">Tips:</h2>
-            <div className="flex justify-center items-center">
-              <button
-                className={`rounded-xl p-2 hover:bg-emerald-600 text-red-500 ${
-                  isDarkMode ? "bg-gray-800" : ""
-                }`}
-                onClick={handleShowTips}
-              >
-                X
-              </button>
-            </div>
-          </div>
-          <ul className="list-disc list-inside">
-            <li>Don&apos;t use the internet</li>
-            <li>Express things in your own words</li>
-            <li>Stay focused on the most important details</li>
-            <li>Focus on clarity of your expression</li>
-          </ul>
-        </div>
-      )}
-
-      {/* PAGE CONTAINER */}
       <section className="flex flex-col h-full p-8">
+        {showTips && (
+          <div
+            className={`absolute rounded-2xl p-[5%] m-[5%] w-[90%] ${
+              isDarkMode
+                ? "bg-black text-white border-white border"
+                : "bg-emerald-800 text-white"
+            }`}
+          >
+            <div className={`flex justify-between`}>
+              <h2 className="text-2xl pb-4">Tips:</h2>
+              <div className="flex justify-center items-center">
+                <button
+                  className={`rounded-xl p-2 hover:bg-emerald-600 text-red-500 ${
+                    isDarkMode ? "bg-gray-800" : ""
+                  }`}
+                  onClick={handleShowTips}
+                >
+                  X
+                </button>
+              </div>
+            </div>
+            <ul className="list-disc list-inside">
+              <li>Don&apos;t use the internet</li>
+              <li>Express things in your own words</li>
+              <li>Stay focused on the most important details</li>
+              <li>Focus on clarity of your expression</li>
+            </ul>
+          </div>
+        )}
+
         {/* CHOOSE TOPIC */}
         {showTopic ? (
           <div className="flex flex-col h-full">
@@ -113,7 +112,7 @@ export default function Home() {
               <img
                 src={`/sign.png`}
                 alt="Rubber Ducky"
-                className="w-3/4 h-3/4 object-contain  p-2 absolute top-1/2 left-1/2  -translate-x-1/2 -translate-y-1/2"
+                className="w-3/4 h-3/4 object-contain p-2 relative -scale-75 -translate-x-1 -translate-y-1"
               />
               {/* Input Box Over the Image */}
               <textarea
@@ -127,7 +126,6 @@ export default function Home() {
                 cols={50}
               />
             </div>
-
             <div /* BOTTOM HALF */>
               <section className="w-full flex-1 flex items-center justify-center">
                 <button

@@ -27,3 +27,24 @@ export const getRelativeTime = (dateString: string): string => {
     });
   }
 };
+
+export function convertToSentence(input: string): string {
+  // Use a regular expression to add a space before each capital letter
+  const result = input.replace(/([A-Z])/g, " $1").toLowerCase();
+  return result;
+}
+
+export function getCategoryPromptInfo(category: string): string {
+  switch (category) {
+    case "modelAnswer":
+      return "Create a model answer for this topic.";
+    case "positives":
+      return "Give yourself credit for what you did well.";
+    case "thingsToImprove":
+      return "Note one or two things you'd want to learn to improve your answer.";
+    case "tag":
+      return "Add tag(s) to help you scan through your graduates (e.g. Maths, biology, computer science)";
+    default:
+      return "Error: Category not found";
+  }
+}

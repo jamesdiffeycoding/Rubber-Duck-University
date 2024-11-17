@@ -8,13 +8,13 @@ const GraduateDuckCardEditBtn = ({
   handleToggleEdit,
 }: {
   index: number;
-  category: keyof TopicAnswerData | "";
+  category: keyof TopicAnswerData;
   handleToggleEdit: (index: number, category: keyof TopicAnswerData) => void;
 }) => {
   const { isDarkMode } = useTheme();
 
   return (
-    <section>
+    <section className="flex justify-center">
       <button
         onClick={() => handleToggleEdit(index, category)}
         className="w-10 ml-4 pl-1 pr-1 rounded-sm hover:bg-emerald-600 bg-emerald-800 text-white"

@@ -5,21 +5,21 @@ import { getRelativeTime } from "../helpers/generalFunctions";
 const GraduateDuckCardHeading = ({
   item,
   category,
+  title,
 }: {
   item: any;
   category: string;
+  title: string;
 }) => {
   const { isDarkMode } = useTheme();
   console.log(item);
 
   return (
     <section>
-      <div className="flex pb-2 pt-2 text-gray-400 text-xs ">
-        <hr className="ml-2 mr-2 border-b-[0.5px] border border-gray-400 w-full mt-[0.45rem]" />
-        <p className="">
-          {category.replace("_", " ").toUpperCase().split(" ")[0]}
-        </p>
-        <hr className="ml-2 mr-2 border-b-[0.5px] border  border-gray-400 w-full mt-[0.45rem]" />
+      <div className="flex items-center pb-2 pt-2 text-gray-400 text-xs min-w-[6rem]">
+        <hr className="flex-grow border-b-[0.5px] border border-gray-400" />
+        <p className="mx-2">{title}</p>{" "}
+        <hr className="flex-grow border-b-[0.5px] border border-gray-400" />
       </div>
       {category !== "date" ? (
         <p>{item[category]}</p>

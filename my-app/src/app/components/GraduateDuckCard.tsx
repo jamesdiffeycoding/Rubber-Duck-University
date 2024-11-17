@@ -1,7 +1,9 @@
-// components/DuckCard.tsx
 import React from "react";
 import { TopicAnswerData } from "../helpers/interfaces";
-import { getRelativeTime } from "../helpers/generalFunctions";
+import {
+  convertToSentence,
+  getCategoryPromptInfo,
+} from "../helpers/generalFunctions";
 import GraduateDuckCircleImage from "./GraduateDuckCircleImage";
 import GraduateDuckCardHeading from "./GraduateDuckCardHeading";
 import GraduateDuckCardEditBtn from "./GraduateDuckCardEditBtn";
@@ -10,7 +12,7 @@ interface DuckCardProps {
   index: number;
   isDarkMode: boolean;
   indexOfCardBeingEdited: number | null;
-  categoryBeingEdited: keyof TopicAnswerData | "";
+  categoryBeingEdited: keyof TopicAnswerData;
   textBeingEdited: string;
   handleToggleEdit: (index: number, category: keyof TopicAnswerData) => void;
   handleTextChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
@@ -44,39 +46,72 @@ const GraduateDuckCard: React.FC<DuckCardProps> = ({
       }}
     >
       <GraduateDuckCircleImage index={index} />
-      <section className="grid ">
-        <GraduateDuckCardHeading item={item} category="topic" />
-        <GraduateDuckCardHeading item={item} category="answer" />
-        <GraduateDuckCardHeading item={item} category="date" />
-        <GraduateDuckCardHeading item={item} category="model_answer" />
-        <GraduateDuckCardEditBtn
-          index={index}
-          category="model_answer"
-          handleToggleEdit={handleToggleEdit}
-        />
-        <GraduateDuckCardHeading item={item} category="comment" />
-        <GraduateDuckCardEditBtn
-          index={index}
-          category="comment"
-          handleToggleEdit={handleToggleEdit}
-        />
-        <GraduateDuckCardHeading item={item} category="tag" />
-        <GraduateDuckCardEditBtn
-          index={index}
-          category="tag"
-          handleToggleEdit={handleToggleEdit}
-        />
+      {/* TOP ROW */}
+      <section className="flex justify-between ">
+        <GraduateDuckCardHeading item={item} category="topic" title="Topic" />
+        <GraduateDuckCardHeading item={item} category="date" title="Date" />
       </section>
+      {/* SECOND ROW */}
+      <GraduateDuckCardHeading
+        item={item}
+        category="answer"
+        title="The answer you gave originally"
+      />
+      {/* THIRD ROW */}
+      <section className="flex justify-between">
+        {/* positives */}
+        <div>
+          <GraduateDuckCardHeading
+            item={item}
+            category="positives"
+            title="positives"
+          />
+          <GraduateDuckCardEditBtn
+            index={index}
+            category="positives"
+            handleToggleEdit={handleToggleEdit}
+          />
+        </div>
+        {/* thingsToImprove */}
+        <div>
+          <GraduateDuckCardHeading
+            item={item}
+            category="thingsToImprove"
+            title="things to improve "
+          />
+          <GraduateDuckCardEditBtn
+            index={index}
+            category="thingsToImprove"
+            handleToggleEdit={handleToggleEdit}
+          />
+        </div>
+      </section>
+
+      {/* MODEL ANSWER */}
+      <GraduateDuckCardHeading
+        item={item}
+        category="modelAnswer"
+        title="Make a model answer"
+      />
+      <GraduateDuckCardEditBtn
+        index={index}
+        category="modelAnswer"
+        handleToggleEdit={handleToggleEdit}
+      />
+      {/* TAGS */}
+      <GraduateDuckCardHeading item={item} category="tag" title="Tags" />
+      <GraduateDuckCardEditBtn
+        index={index}
+        category="tag"
+        handleToggleEdit={handleToggleEdit}
+      />
 
       <div className="mt-4 flex flex-col items-center">
         {indexOfCardBeingEdited === index ? (
           <>
             <textarea
               className="w-full p-2 resize-none text-black rounded-md border border-gray-400"
-              placeholder={`Edit your ${categoryBeingEdited.replace(
-                "_",
-                " "
-              )} here`}
+              placeholder={`${getCategoryPromptInfo(categoryBeingEdited)}`}
               value={textBeingEdited}
               onChange={handleTextChange}
               rows={4}
@@ -89,7 +124,7 @@ const GraduateDuckCard: React.FC<DuckCardProps> = ({
                   : "bg-emerald-600 hover:bg-emerald-700 text-white"
               }`}
             >
-              Save {categoryBeingEdited}
+              Save {convertToSentence(categoryBeingEdited)}
             </button>
           </>
         ) : (
