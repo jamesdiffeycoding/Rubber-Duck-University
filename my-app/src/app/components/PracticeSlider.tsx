@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useTheme } from "../ThemeContext";
+
 interface PracticeCircularSliderProps {
   handleTimeOnClockSlide: (newTime: number) => void;
 }
@@ -12,27 +13,21 @@ const PracticeCircularSlider: React.FC<PracticeCircularSliderProps> = ({
   const radius = 93;
   const circleRef = useRef<HTMLDivElement>(null);
 
-  // Handle mouse down event to start dragging and calculate angle on click
-  function handleMouseDown(e: React.MouseEvent<HTMLDivElement>) {
-    if (circleRef.current) {
-      const rect = circleRef.current.getBoundingClientRect();
-      const centerX = rect.left + rect.width / 2;
-      const centerY = rect.top + rect.height / 2;
+  // Reusable function for calculating angle based on mouse/touch position
+  const calculateAngle = (clientX: number, clientY: number) => {
+    if (!circleRef.current) return 0;
+    const rect = circleRef.current.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
 
-      const mouseX = e.clientX;
-      const mouseY = e.clientY;
+    const dx = clientX - centerX;
+    const dy = clientY - centerY;
+    const angleRad = Math.atan2(dy, dx);
+    const angleDeg = (angleRad * 180) / Math.PI;
 
-      const dx = mouseX - centerX;
-      const dy = mouseY - centerY;
-      const angleRad = Math.atan2(dy, dx);
-      const angleDeg = (angleRad * 180) / Math.PI;
+    return (angleDeg + 360) % 360; // Normalize the angle
+  };
 
-      const normalizedAngle = (angleDeg + 360) % 360;
-      setAngle(normalizedAngle);
-    }
-    setIsDragging(true);
-    e.preventDefault();
-  }
   const { isDarkMode }: { isDarkMode: boolean } = useTheme();
 
   useEffect(() => {
@@ -48,28 +43,27 @@ const PracticeCircularSlider: React.FC<PracticeCircularSliderProps> = ({
     return time;
   }
 
-  function handleMouseMove(e: MouseEvent) {
-    if (!isDragging || !circleRef.current) return;
+  function handleStart(
+    e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>
+  ) {
+    e.preventDefault();
+    const clientX = "touches" in e ? e.touches[0].clientX : e.clientX;
+    const clientY = "touches" in e ? e.touches[0].clientY : e.clientY;
 
-    const rect = circleRef.current.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
-
-    const mouseX = e.clientX;
-    const mouseY = e.clientY;
-
-    const dx = mouseX - centerX;
-    const dy = mouseY - centerY;
-    const angleRad = Math.atan2(dy, dx);
-    const angleDeg = (angleRad * 180) / Math.PI;
-
-    setAngle(() => {
-      const normalizedAngle = (angleDeg + 360) % 360;
-      return normalizedAngle;
-    });
+    setAngle(calculateAngle(clientX, clientY));
+    setIsDragging(true);
   }
 
-  function handleMouseUp() {
+  function handleMove(e: MouseEvent | TouchEvent) {
+    if (!isDragging || !circleRef.current) return;
+
+    const clientX = "touches" in e ? e.touches[0].clientX : e.clientX;
+    const clientY = "touches" in e ? e.touches[0].clientY : e.clientY;
+
+    setAngle(calculateAngle(clientX, clientY));
+  }
+
+  function handleEnd() {
     setIsDragging(false);
   }
 
@@ -78,16 +72,22 @@ const PracticeCircularSlider: React.FC<PracticeCircularSliderProps> = ({
 
   React.useEffect(() => {
     if (isDragging) {
-      document.addEventListener("mousemove", handleMouseMove);
-      document.addEventListener("mouseup", handleMouseUp);
+      document.addEventListener("mousemove", handleMove);
+      document.addEventListener("mouseup", handleEnd);
+      document.addEventListener("touchmove", handleMove, { passive: false });
+      document.addEventListener("touchend", handleEnd);
     } else {
-      document.removeEventListener("mousemove", handleMouseMove);
-      document.removeEventListener("mouseup", handleMouseUp);
+      document.removeEventListener("mousemove", handleMove);
+      document.removeEventListener("mouseup", handleEnd);
+      document.removeEventListener("touchmove", handleMove);
+      document.removeEventListener("touchend", handleEnd);
     }
 
     return () => {
-      document.removeEventListener("mousemove", handleMouseMove);
-      document.removeEventListener("mouseup", handleMouseUp);
+      document.removeEventListener("mousemove", handleMove);
+      document.removeEventListener("mouseup", handleEnd);
+      document.removeEventListener("touchmove", handleMove);
+      document.removeEventListener("touchend", handleEnd);
     };
   }, [isDragging]);
 
@@ -99,7 +99,8 @@ const PracticeCircularSlider: React.FC<PracticeCircularSliderProps> = ({
       <div
         className="w-48 h-48 rounded-full flex justify-center items-center relative"
         ref={circleRef}
-        onMouseDown={handleMouseDown}
+        onMouseDown={handleStart}
+        onTouchStart={handleStart} // Add touch event for mobile
         style={{
           background: `conic-gradient(#689f38 ${fillPercentage}deg, #FFA500 0deg)`,
         }}
@@ -121,7 +122,7 @@ const PracticeCircularSlider: React.FC<PracticeCircularSliderProps> = ({
           <img
             src={`/ducks (1).png`}
             alt="Rubber Ducky"
-            className="w-3/4 h-3/4 object-center p-2 relative rounded-full" // Removed scale and translation
+            className="w-3/4 h-3/4 object-center p-2 relative rounded-full"
           />
         </div>
       </div>
