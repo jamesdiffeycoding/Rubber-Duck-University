@@ -1,3 +1,5 @@
+import { TopicAnswerData } from "../helpers/interfaces";
+
 export const getData = () => {
   const data: TopicAnswerData[] = JSON.parse(
     localStorage.getItem("topicAnswerData") || "[]"
