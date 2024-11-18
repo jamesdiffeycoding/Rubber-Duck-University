@@ -2,9 +2,7 @@
 import { useState, useEffect } from "react";
 import Timer from "../components/Timer";
 import { useTheme } from "../ThemeContext";
-import HeaderLink from "../components/HeaderLink";
 import PracticeCircularSlider from "../components/PracticeSlider";
-import { useRouter } from "next/router";
 import Link from "next/link";
 export default function Home() {
   const [showTopic, setShowTopic] = useState<boolean>(true);
@@ -225,7 +223,7 @@ export default function Home() {
                     className="px-6 py-3 rounded-lg bg-emerald-900 hover:bg-emerald-700 transition-all"
                     onClick={reloadPage}
                   >
-                    Let's go again!
+                    Let&apos;s go again!
                   </button>
                   <Link href="/graduates">
                     <button className="px-6 py-3 rounded-lg bg-emerald-900 hover:bg-emerald-700 transition-all">

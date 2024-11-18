@@ -108,11 +108,6 @@ const DisplayStoredData = () => {
         </h2>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
           {rankData.map(({ rank, range }) => {
-            const division = findDivisionForRankByLowerAndUpperBound(
-              numberOfDucks,
-              range[0],
-              range[1]
-            );
             return (
               <div
                 key={rank}

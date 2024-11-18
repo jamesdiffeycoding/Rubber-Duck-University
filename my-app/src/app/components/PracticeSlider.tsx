@@ -63,7 +63,7 @@ const PracticeCircularSlider: React.FC<PracticeCircularSliderProps> = ({
     const angleRad = Math.atan2(dy, dx);
     const angleDeg = (angleRad * 180) / Math.PI;
 
-    setAngle((prevAngle) => {
+    setAngle(() => {
       const normalizedAngle = (angleDeg + 360) % 360;
       return normalizedAngle;
     });
