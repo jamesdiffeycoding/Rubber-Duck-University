@@ -1,22 +1,35 @@
 import { useState, useEffect } from "react";
-export default function Timer() {
-  const [time, setTime] = useState(300);
+export default function Timer({
+  timeOnClock,
+  handleTimeRequirementComplete,
+}: {
+  timeOnClock: number;
+  handleTimeRequirementComplete: () => void;
+}) {
+  const [timeRemaining, setTimeRemaining] = useState(timeOnClock * 60);
 
   useEffect(() => {
-    if (time <= 0) return; // Stop when timer reaches 0
+    if (timeRemaining <= 0) return; // Stop when timeRemainingr reaches 0
 
     const interval = setInterval(() => {
-      setTime((prevTime) => prevTime - 1);
+      setTimeRemaining((prevTimeRemaining) => prevTimeRemaining - 1);
     }, 1000);
 
-    return () => clearInterval(interval); // Cleanup interval on unmount or time change
-  }, [time]);
+    if (timeRemaining <= 0) {
+      handleTimeRequirementComplete();
+    }
+
+    return () => clearInterval(interval); // Cleanup interval on unmount or timeRemaining change
+  }, [timeRemaining]);
 
   return (
-    <section className="flex justify-end items-center text-right w-full">
-      <div className="bg-slate-500 p-2 rounded-lg justify-right text-right align-right">
-        <h3>Guide timer: </h3>
-        {Math.floor(time / 60)} : {time % 60}
+    <section className="opacity-50 text-white">
+      <div className="text-xs">
+        {Math.floor(timeRemaining / 60) > 0
+          ? `${Math.floor(timeRemaining / 60)} : ${timeRemaining % 60}`
+          : timeRemaining > 0
+          ? `${timeRemaining % 60} seconds`
+          : "Timer complete"}
       </div>
     </section>
   );

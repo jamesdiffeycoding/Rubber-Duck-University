@@ -83,8 +83,8 @@ export default function Home() {
         </div>
         <div className="flex flex-col justify-center pl-8">
           <div className="text-xl mb-4">
-            <strong className="text-2xl">Want to be a better dev? </strong>
-            <p>Articulate your learnings for rapid results.</p>
+            <strong className="text-2xl">Want to learn faster? </strong>
+            <p>Articulate your understanding for rapid results.</p>
           </div>
         </div>
       </section>

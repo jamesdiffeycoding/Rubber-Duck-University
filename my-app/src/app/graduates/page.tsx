@@ -47,43 +47,45 @@ const DisplayStoredData = () => {
   console.log(storedData);
   return (
     <section
-      className={`flex-1 h-screen p-8 ${
+      className={`flex-1 p-8  h-screen flex flex-col justify-center items-center ${
         isDarkMode
           ? "bg-gray-900 text-white border-gray-700"
-          : "bg-emerald-300 text-gray-900 border-gray-300"
+          : "bg-emerald-200 text-gray-900 border-gray-300"
       }`}
     >
-      <h2 className="text-2xl font-semibold mb-4">Duck graduates</h2>
-      {storedData.length !== 0 ? (
-        <section>
+      <section className="max-w-[1100px]">
+        <h2 className="text-2xl font-semibold mb-4">Duck graduates</h2>
+        {storedData.length !== 0 ? (
+          <section>
+            <p>
+              You have helped <strong>{storedData.length} </strong> ducks to
+              graduate from their degree.
+            </p>
+            <div className="p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {storedData.map((item, index) => (
+                <div key={index}>
+                  <GraduateDuckCard
+                    key={index}
+                    item={item}
+                    index={index}
+                    isDarkMode={isDarkMode}
+                    indexOfCardBeingEdited={indexOfCardBeingEdited}
+                    categoryBeingEdited={categoryBeingEdited}
+                    textBeingEdited={textBeingEdited}
+                    handleToggleEdit={handleToggleEdit}
+                    handleTextChange={handleTextChange}
+                    handleSaveEdit={handleSaveEdit}
+                  />
+                </div>
+              ))}
+            </div>
+          </section>
+        ) : (
           <p>
-            You have helped <strong>{storedData.length} </strong> ducks to
-            graduate from their degree.
+            To help ducks graduate from University, go to the Practice section!
           </p>
-          <div className="p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {storedData.map((item, index) => (
-              <div key={index}>
-                <GraduateDuckCard
-                  key={index}
-                  item={item}
-                  index={index}
-                  isDarkMode={isDarkMode}
-                  indexOfCardBeingEdited={indexOfCardBeingEdited}
-                  categoryBeingEdited={categoryBeingEdited}
-                  textBeingEdited={textBeingEdited}
-                  handleToggleEdit={handleToggleEdit}
-                  handleTextChange={handleTextChange}
-                  handleSaveEdit={handleSaveEdit}
-                />
-              </div>
-            ))}
-          </div>
-        </section>
-      ) : (
-        <p>
-          To help ducks graduate from University, go to the Practice section!
-        </p>
-      )}
+        )}
+      </section>
     </section>
   );
 };

@@ -7,7 +7,7 @@ const ThemeToggle = () => {
   return (
     <button
       onClick={toggleTheme}
-      className="p-2 text-xl"
+      className="p-2 text-xl hover:bg-emerald-700 transition-all rounded-md"
       aria-label="Toggle Theme"
     >
       {isDarkMode ? "☼" : "☾"} {/* Sun and Moon icons for Dark/Light */}

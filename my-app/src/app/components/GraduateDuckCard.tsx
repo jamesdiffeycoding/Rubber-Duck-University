@@ -37,7 +37,7 @@ const GraduateDuckCard: React.FC<DuckCardProps> = ({
           ? "w-full bg-gray-800 text-white flex-grow"
           : isDarkMode
           ? "bg-gray-900 text-white border-gray-700"
-          : "bg-amber-200 text-gray-900 border-gray-300"
+          : "bg-white text-gray-900 border-gray-300"
       }`}
       style={{
         transition: "all 0.3s ease",
@@ -55,7 +55,7 @@ const GraduateDuckCard: React.FC<DuckCardProps> = ({
       <GraduateDuckCardHeading
         item={item}
         category="answer"
-        title="The answer you gave originally"
+        title="Your explanation"
       />
       {/* THIRD ROW */}
       <section className="flex justify-between">
@@ -64,7 +64,7 @@ const GraduateDuckCard: React.FC<DuckCardProps> = ({
           <GraduateDuckCardHeading
             item={item}
             category="positives"
-            title="positives"
+            title="Positives"
           />
           <GraduateDuckCardEditBtn
             index={index}
@@ -77,7 +77,7 @@ const GraduateDuckCard: React.FC<DuckCardProps> = ({
           <GraduateDuckCardHeading
             item={item}
             category="thingsToImprove"
-            title="things to improve "
+            title="Improvements "
           />
           <GraduateDuckCardEditBtn
             index={index}
@@ -91,7 +91,7 @@ const GraduateDuckCard: React.FC<DuckCardProps> = ({
       <GraduateDuckCardHeading
         item={item}
         category="modelAnswer"
-        title="Make a model answer"
+        title="Model answer"
       />
       <GraduateDuckCardEditBtn
         index={index}
@@ -118,11 +118,7 @@ const GraduateDuckCard: React.FC<DuckCardProps> = ({
             />
             <button
               onClick={() => handleSaveEdit(index, categoryBeingEdited)}
-              className={`p-1 rounded-md ${
-                isDarkMode
-                  ? "bg-emerald-800 hover:bg-emerald-700 text-white"
-                  : "bg-emerald-600 hover:bg-emerald-700 text-white"
-              }`}
+              className={`p-1 rounded-md bg-emerald-800 hover:bg-emerald-700 text-white}`}
             >
               Save {convertToSentence(categoryBeingEdited)}
             </button>
