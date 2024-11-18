@@ -118,7 +118,7 @@ export default function Home() {
                 value={topic}
                 onChange={handleTopicChange}
                 placeholder="Enter topic..."
-                className={`w-full h-[7rem] m-8 p-2 first-line:text-center flex justify-center items-center rounded-xl resize-none z-10  hover:bg-green-900 hover:bg-opacity-50 hover:text-white hover:placeholder-white ${
+                className={`w-full h-[7rem] m-8 p-2 first-line:text-center flex justify-center items-center rounded-xl resize-none z-10  hover:bg-green-500  hover:placeholder-white ${
                   isDarkMode
                     ? "bg-gray-800 placeholder-white"
                     : "bg-emerald-300 placeholder-black"
@@ -132,7 +132,10 @@ export default function Home() {
               <PracticeCircularSlider
                 handleTimeOnClockSlide={handleTimeOnClockSlide} // Pass down the handleTimeSlide function
               />
-              <div className="text-center text-2xl p-4"> {timeOnClock}:00</div>
+              <div className="text-center text-2xl p-4">
+                {" "}
+                {timeOnClock} minutes{" "}
+              </div>
             </div>
             <div /* BOTTOM HALF */>
               <section className="w-full flex-1 flex items-center justify-center">
@@ -177,7 +180,7 @@ export default function Home() {
                   onChange={handleAnswerChange}
                   placeholder="Explain the topic in as much detail as you can."
                   rows={15}
-                  className={`flex-1 w-[90%] border p-2 rounded resize hover:bg-green-900 hover:bg-opacity-50 hover:text-white hover:placeholder-white ${
+                  className={`flex-1 w-[90%] border p-2 rounded resize hover:bg-green-500 hover:placeholder-white ${
                     isDarkMode
                       ? "border-white text-white bg-gray-800"
                       : "border-gray-700 text-gray-900 bg-emerald-300"
