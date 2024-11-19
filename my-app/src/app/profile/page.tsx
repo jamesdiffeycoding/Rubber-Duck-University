@@ -25,6 +25,21 @@ const DisplayStoredData = () => {
     const division = Math.floor((ducks - lower) / divisionSize) + 1;
     return Math.min(division, 5); // Ensure the division doesn't exceed 5
   }
+  function numberToRoman(num: number): string {
+    if (num < 1 || num > 5) {
+      throw new Error("Input must be a number between 1 and 5");
+    }
+
+    const romanNumerals: { [key: number]: string } = {
+      1: "I",
+      2: "II",
+      3: "III",
+      4: "IV",
+      5: "V",
+    };
+
+    return romanNumerals[num];
+  }
 
   // Array with ranks and their corresponding ranges
   const rankData = [
@@ -106,7 +121,13 @@ const DisplayStoredData = () => {
               {ranksOneThroughFiveArray.map((number, index) => {
                 return (
                   <div key={index} className="">
-                    {number}
+                    {rankAndDvision[1] == number ? (
+                      numberToRoman(number)
+                    ) : (
+                      <div className="bg-white rounded-md text-black font-bold">
+                        {numberToRoman(number)}
+                      </div>
+                    )}
                   </div>
                 );
               })}
