@@ -44,11 +44,12 @@ export default function Header() {
     <>
       <header
         className={` ${
-          isDarkMode ? "bg-black text-white" : "bg-emerald-800 text-white"
+          isDarkMode ? "bg-black text-white" : "bg-sky-900 text-white"
         }`}
       >
-        <section className="flex justify-between items-center relative p-6">
-          <div className="flex-1 flex items-center">
+        <section className="flex justify-between items-center relative p-4">
+          {/* RUBBER DUCK TITLE */}
+          <div className="flex-1 flex items-center ">
             <h1 className="text-3xl font-semibold">
               <Link href="/">
                 <button className="font-bold text-xl">
@@ -106,7 +107,7 @@ export default function Header() {
           className={`${
             isMenuOpen ? "block" : "hidden"
           } max-w[20rem] text-white shadow-lg rounded-b-md p-4 lg:hidden ${
-            isDarkMode ? "bg-black" : "bg-emerald-800"
+            isDarkMode ? "bg-black" : "bg-sky-800"
           }`}
           onClick={toggleMenu}
         >

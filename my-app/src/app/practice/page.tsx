@@ -4,6 +4,8 @@ import Timer from "../components/Timer";
 import { useTheme } from "../ThemeContext";
 import PracticeCircularSlider from "../components/PracticeSlider";
 import Link from "next/link";
+import { reloadPage } from "../helpers/generalFunctions";
+
 export default function Home() {
   const [showTopic, setShowTopic] = useState<boolean>(true);
   const [answerEmpty, setAnswerEmpty] = useState<boolean>(true);
@@ -67,9 +69,6 @@ export default function Home() {
     setShowAnswer(false);
     pushTopicAndAnswer(topic, answer);
   };
-  const reloadPage = () => {
-    window.location.reload();
-  };
 
   // Save the topic and answer to localStorage
   const pushTopicAndAnswer = (topic: string, answer: string): void => {
@@ -100,144 +99,146 @@ export default function Home() {
   return (
     <main
       className={`flex-1 ${
-        isDarkMode ? "bg-gray-900 text-white" : "bg-emerald-200 text-gray-900"
+        isDarkMode ? "bg-gray-900 text-white" : "bg-sky-200 text-gray-900"
       }`}
     >
-      <section className="flex flex-col h-full p-8">
-        {/* CHOOSE TOPIC */}
-        {showTopic ? (
-          <div className="flex flex-col h-full">
-            <p className="text-center">
-              Choose a <strong>topic</strong> and <strong>the time</strong> you
-              want to talk about it for.
-            </p>
-            {/* TOPIC INPUT */}
-            <div className="flex content-center justify-center w-full align-center">
-              <textarea
-                id="topicInput"
-                value={topic}
-                onChange={handleTopicChange}
-                placeholder="Enter topic..."
-                className={`w-full h-[7rem] m-8 p-2 first-line:text-center flex justify-center items-center rounded-xl resize-none z-10  hover:bg-green-500  hover:placeholder-white ${
-                  isDarkMode
-                    ? "bg-gray-800 placeholder-white"
-                    : "bg-emerald-300 placeholder-black"
-                }`}
-                rows={3}
-                cols={10}
-              />
-            </div>
-            {/* SLIDER */}
-            <div className="flex-1">
-              <PracticeCircularSlider
-                handleTimeOnClockSlide={handleTimeOnClockSlide} // Pass down the handleTimeSlide function
-              />
-              <div className="text-center text-2xl p-4">
-                {" "}
-                {timeOnClock} minutes{" "}
-              </div>
-            </div>
-            <div /* BOTTOM HALF */>
-              <section className="w-full flex-1 flex items-center justify-center">
-                <button
-                  onClick={handleEnteredTopicClick} // Handle button click to submit answer
-                  className={` text-white p-4 m-8 rounded-lg shadow-lg transition-alls ${
-                    topicEmpty
-                      ? "bg-gray-700 hover:bg-gray-600"
-                      : "bg-emerald-700 hover:bg-emerald-600"
-                  }`}
-                >
-                  Confirm Topic
-                </button>
-              </section>
-            </div>
-          </div>
-        ) : (
-          <>
-            {/* ENTER ANSWER */}
-            {showAnswer ? (
-              <section className="flex flex-col h-full items-center justify-center text-center align-center">
-                {/* 1 */}
-                <img
-                  src={`/ducks (1).jpg`}
-                  alt={"duck"}
-                  className={`w-24 h-24 object-contain rounded-full border-4 border-solid ${
-                    isDarkMode ? "border-white" : "border-emerald-700"
-                  }`}
-                />
-
-                {/* 2 */}
-                <div className="w-[80%] flex justify-between">
-                  <label htmlFor="answerInput" className="block text-lg mb-2">
-                    Help Ducky Duckerson prepare for an exam on
-                    <strong> {topic} </strong> by explaining the topic.
-                  </label>
-                </div>
-                {/* 3 */}
+      <section className="flex flex-col justify-center items-center">
+        <section className="max-w-[1000px] flex flex-col h-full p-4">
+          {/* CHOOSE TOPIC */}
+          {showTopic ? (
+            <div className="flex flex-col h-full">
+              <p className="text-center">
+                Choose a <strong>topic</strong> and <strong>the time</strong>{" "}
+                you want to write for.
+              </p>
+              {/* TOPIC INPUT */}
+              <div className="flex content-center justify-center w-full align-center">
                 <textarea
-                  id="answerInput"
-                  value={answer}
-                  onChange={handleAnswerChange}
-                  placeholder="Explain the topic in as much detail as you can."
-                  rows={15}
-                  className={`flex-1 w-[90%] border p-2 rounded resize hover:bg-green-500 hover:placeholder-white ${
+                  id="topicInput"
+                  value={topic}
+                  onChange={handleTopicChange}
+                  placeholder="Enter topic..."
+                  className={`w-full h-[7rem] m-8 p-2 first-line:text-center flex justify-center items-center rounded-xl resize-none z-10  hover:bg-opacity-30  ${
                     isDarkMode
-                      ? "border-white text-white bg-gray-800"
-                      : "border-gray-700 text-gray-900 bg-emerald-300"
+                      ? "bg-slate-700 text-gray-300"
+                      : "bg-sky-300 placeholder-green-800"
                   }`}
+                  rows={3}
+                  cols={10}
                 />
-                {/* 3 */}
-                <section className=" w-full flex items-center justify-center">
+              </div>
+              {/* SLIDER */}
+              <div className="flex-1">
+                <PracticeCircularSlider
+                  handleTimeOnClockSlide={handleTimeOnClockSlide} // Pass down the handleTimeSlide function
+                />
+                <div className="text-center text-2xl p-4">
+                  {" "}
+                  {timeOnClock} minutes{" "}
+                </div>
+              </div>
+              <div /* BOTTOM HALF */>
+                <section className="w-full flex-1 flex items-center justify-center">
                   <button
-                    onClick={handleEnteredAnswer} // Handle button click to submit answer
-                    className={` text-white p-4 m-4 rounded-lg shadow-lg transition-alls ${
-                      timeRequirementComplete && !answerEmpty
-                        ? "bg-emerald-700 hover:bg-emerald-600"
-                        : "bg-gray-700 hover:bg-gray-600"
+                    onClick={handleEnteredTopicClick} // Handle button click to submit answer
+                    className={` text-white p-4 m-8 rounded-lg shadow-lg transition-alls ${
+                      topicEmpty
+                        ? "bg-gray-700 hover:bg-gray-600"
+                        : "bg-sky-700 hover:bg-sky-600"
                     }`}
                   >
-                    Confirm Answer
-                    <Timer
-                      timeOnClock={timeOnClock}
-                      handleTimeRequirementComplete={
-                        handleTimeRequirementComplete
-                      }
-                    />
+                    Confirm Topic
                   </button>
                 </section>
-              </section>
-            ) : (
-              <div className="text-center flex justify-center flex-wrap">
-                <div className="flex flex-col items-center">
-                  {" "}
-                  {/* Allow items to stack */}
-                  <p>Nice work.</p>
+              </div>
+            </div>
+          ) : (
+            <>
+              {/* ENTER ANSWER */}
+              {showAnswer ? (
+                <section className="flex flex-col h-full items-center justify-center text-center align-center">
+                  {/* 1 */}
                   <img
-                    src={`/rubberduckgraduation.jpg`}
-                    alt={"duckgraduate"}
+                    src={`/ducks (1).jpg`}
+                    alt={"duck"}
                     className={`w-24 h-24 object-contain rounded-full border-4 border-solid ${
-                      isDarkMode ? "border-white" : "border-emerald-700"
+                      isDarkMode ? "border-white" : "border-sky-700"
                     }`}
                   />
-                </div>
 
-                <div className="w-full grid sm:w-[200px] justify-center text-white gap-8 p-4">
-                  <button
-                    className="px-6 py-3 rounded-lg bg-emerald-900 hover:bg-emerald-700 transition-all"
-                    onClick={reloadPage}
-                  >
-                    Let&apos;s go again!
-                  </button>
-                  <Link href="/graduates">
-                    <button className="px-6 py-3 rounded-lg bg-emerald-900 hover:bg-emerald-700 transition-all">
-                      See graduates
+                  {/* 2 */}
+                  <div className="w-[80%] flex justify-between">
+                    <label htmlFor="answerInput" className="block text-lg mb-2">
+                      Help Ducky Duckerson prepare for an exam on
+                      <strong> {topic} </strong> by explaining the topic.
+                    </label>
+                  </div>
+                  {/* 3 */}
+                  <textarea
+                    id="answerInput"
+                    value={answer}
+                    onChange={handleAnswerChange}
+                    placeholder="Explain the topic in as much detail as you can."
+                    rows={15}
+                    className={`flex-1 w-[90%] border p-2 rounded resize hover:bg-opacity-30 ${
+                      isDarkMode
+                        ? "bg-slate-700 text-gray-300"
+                        : "bg-sky-300 placeholder-green-800"
+                    }`}
+                  />
+                  {/* 3 */}
+                  <section className=" w-full flex items-center justify-center">
+                    <button
+                      onClick={handleEnteredAnswer} // Handle button click to submit answer
+                      className={` text-white p-4 m-4 rounded-lg shadow-lg transition-alls ${
+                        timeRequirementComplete && !answerEmpty
+                          ? "bg-sky-700 hover:bg-sky-600"
+                          : "bg-gray-700 hover:bg-gray-600"
+                      }`}
+                    >
+                      Confirm Answer
+                      <Timer
+                        timeOnClock={timeOnClock}
+                        handleTimeRequirementComplete={
+                          handleTimeRequirementComplete
+                        }
+                      />
                     </button>
-                  </Link>
+                  </section>
+                </section>
+              ) : (
+                <div className="text-center flex justify-center flex-wrap">
+                  <div className="flex flex-col items-center">
+                    {" "}
+                    {/* Allow items to stack */}
+                    <p>Nice work.</p>
+                    <img
+                      src={`/rubberduckgraduation.jpg`}
+                      alt={"duckgraduate"}
+                      className={`w-24 h-24 object-contain rounded-full border-4 border-solid ${
+                        isDarkMode ? "border-white" : "border-sky-700"
+                      }`}
+                    />
+                  </div>
+
+                  <div className="w-full grid sm:w-[200px] justify-center text-white gap-8 p-4">
+                    <button
+                      className="px-6 py-3 rounded-lg bg-sky-900 hover:bg-sky-700 transition-all"
+                      onClick={reloadPage}
+                    >
+                      Let&apos;s go again!
+                    </button>
+                    <Link href="/graduates">
+                      <button className="px-6 py-3 rounded-lg bg-sky-900 hover:bg-sky-700 transition-all">
+                        See graduates
+                      </button>
+                    </Link>
+                  </div>
                 </div>
-              </div>
-            )}
-          </>
-        )}
+              )}
+            </>
+          )}
+        </section>
       </section>
     </main>
   );

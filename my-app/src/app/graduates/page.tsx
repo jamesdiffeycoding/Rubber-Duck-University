@@ -4,6 +4,8 @@ import { useTheme } from "../ThemeContext";
 import { TopicAnswerData } from "../helpers/interfaces";
 import { getData } from "../helpers/databaseFunctions";
 import GraduateDuckCard from "../components/GraduateDuckCard";
+import Link from "next/link";
+import { reloadPage } from "../helpers/generalFunctions";
 const DisplayStoredData = () => {
   const { isDarkMode } = useTheme();
 
@@ -47,10 +49,10 @@ const DisplayStoredData = () => {
   console.log(storedData);
   return (
     <section
-      className={`flex-1 p-8  h-screen flex flex-col justify-center items-center ${
+      className={`flex-1 p-4  h-screen flex flex-col items-center ${
         isDarkMode
           ? "bg-gray-900 text-white border-gray-700"
-          : "bg-emerald-200 text-gray-900 border-gray-300"
+          : "bg-sky-200 text-gray-900 border-gray-300"
       }`}
     >
       <section className="max-w-[1100px]">
@@ -61,7 +63,7 @@ const DisplayStoredData = () => {
               You have helped <strong>{storedData.length} </strong> ducks to
               graduate from their degree.
             </p>
-            <div className="p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {storedData.map((item, index) => (
                 <div key={index}>
                   <GraduateDuckCard
@@ -81,9 +83,20 @@ const DisplayStoredData = () => {
             </div>
           </section>
         ) : (
-          <p>
-            To help ducks graduate from University, go to the Practice section!
-          </p>
+          <div>
+            <p>
+              To help ducks graduate from University, go to the Practice
+              section!
+            </p>{" "}
+            <div className="flex flex-col justify-center items-center p-4">
+              <Link
+                href="/practice"
+                className="px-6 py-3 rounded-lg bg-sky-900 text-white hover:bg-sky-700 transition-all"
+              >
+                Let&apos;s get started!
+              </Link>
+            </div>
+          </div>
         )}
       </section>
     </section>

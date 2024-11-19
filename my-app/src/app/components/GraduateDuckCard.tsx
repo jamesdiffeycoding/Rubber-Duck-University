@@ -118,7 +118,7 @@ const GraduateDuckCard: React.FC<DuckCardProps> = ({
             />
             <button
               onClick={() => handleSaveEdit(index, categoryBeingEdited)}
-              className={`p-1 rounded-md bg-emerald-800 hover:bg-emerald-700 text-white}`}
+              className={`p-1 rounded-md bg-sky-800 hover:bg-sky-700 text-white}`}
             >
               Save {convertToSentence(categoryBeingEdited)}
             </button>

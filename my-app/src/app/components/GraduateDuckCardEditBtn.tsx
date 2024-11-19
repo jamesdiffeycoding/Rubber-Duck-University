@@ -14,7 +14,7 @@ const GraduateDuckCardEditBtn = ({
     <section className="flex justify-center">
       <button
         onClick={() => handleToggleEdit(index, category)}
-        className="w-10 ml-4 pl-1 pr-1 text-xs rounded-sm hover:bg-emerald-600 bg-emerald-600 text-white"
+        className="w-10 ml-4 pl-1 pr-1 text-xs rounded-sm hover:bg-sky-600 bg-sky-600 text-white"
       >
         Edit
       </button>

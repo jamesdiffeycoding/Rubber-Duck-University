@@ -48,3 +48,7 @@ export function getCategoryPromptInfo(category: string): string {
       return "Error: Category not found";
   }
 }
+
+export const reloadPage = () => {
+  window.location.reload();
+};

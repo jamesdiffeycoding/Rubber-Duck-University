@@ -102,11 +102,11 @@ const PracticeCircularSlider: React.FC<PracticeCircularSliderProps> = ({
         onMouseDown={handleStart}
         onTouchStart={handleStart} // Add touch event for mobile
         style={{
-          background: `conic-gradient(#689f38 ${fillPercentage}deg, #FFA500 0deg)`,
+          background: `conic-gradient(#0ea5e9 ${fillPercentage}deg, #ffffff 0deg)`,
         }}
       >
         <div
-          className="absolute w-6 h-6 bg-lime-700 rounded-full z-10"
+          className="absolute w-6 h-6 bg-sky-700 rounded-full z-10"
           style={{
             left: `calc(50% + ${x}px)`,
             top: `calc(50% + ${y}px)`,
@@ -116,7 +116,7 @@ const PracticeCircularSlider: React.FC<PracticeCircularSliderProps> = ({
         />
         <div
           className={`w-[11rem] h-[11rem] rounded-full absolute flex items-center justify-center ${
-            isDarkMode ? "bg-gray-600" : "bg-yellow-200"
+            isDarkMode ? "bg-gray-600" : "bg-lime-200"
           }`}
         >
           <img

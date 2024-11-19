@@ -5,7 +5,7 @@ export default function RubberDucky() {
         <img
           src={`/rubberducky.png`}
           alt="Rubber Ducky"
-          className="w-48 h-48 object-contain"
+          className="w-36 h-36 object-contain"
         />
       </div>
     </>
