@@ -123,7 +123,7 @@ const DisplayStoredData = () => {
                   key={index}
                   className={`${
                     rankAndDvision[1] == number
-                      ? "bg-white rounded-md text-black font-bold"
+                      ? "bg-white rounded-md text-black font-bold flex justify-center items-center text-center"
                       : ""
                   }`}
                 >
