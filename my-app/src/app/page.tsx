@@ -1,73 +1,8 @@
 "use client";
 import Link from "next/link";
 import { useTheme } from "./ThemeContext"; // Import useTheme hook
-import RubberDucky from "./components/RubberDucky";
 import Rankings from "./components/Rankings";
 import ThreeSteps from "./components/3Steps";
-// Define the types for the BannerSection props
-interface BannerSectionProps {
-  children: React.ReactNode;
-  isDarkMode: boolean;
-  className?: string;
-}
-
-// BannerSection component
-const BannerSection = ({
-  children,
-  isDarkMode,
-  className,
-}: BannerSectionProps) => (
-  <section
-    className={`${className} ${
-      isDarkMode
-        ? "bg-gradient-to-r from-gray-800 via-gray-900 to-gray-800"
-        : "bg-gradient-to-r from-orange-300 via-orange-500 to-orange-300"
-    }`}
-  >
-    <div
-      className="text-2xl text-center p-4"
-      style={{ textShadow: "1px 1px 1px rgba(1, 1, 1, 0.4)" }}
-    >
-      {children}
-    </div>
-  </section>
-);
-
-// Define the types for CircleImageAndText props
-interface CircleImageAndTextProps {
-  imageSrc: string;
-  altText: string;
-  description: string;
-  isDarkMode: boolean;
-}
-
-// CircleImageAndText component
-const CircleImageAndText = ({
-  imageSrc,
-  altText,
-  description,
-  isDarkMode,
-}: CircleImageAndTextProps) => (
-  <div className="flex flex-col items-center text-center">
-    <div
-      className="mx-auto mb-4 rounded-full"
-      style={{
-        backgroundColor: isDarkMode
-          ? "rgba(0, 0, 0, 0.4)"
-          : "rgba(0, 255, 0, 0.2)",
-      }}
-    >
-      <img
-        src={imageSrc}
-        alt={altText}
-        className="w-24 h-24 object-contain rounded-full border-4 border-solid"
-        style={{ borderColor: isDarkMode ? "#ffffff" : "#1F2937" }}
-      />
-    </div>
-    <p>{description}</p>
-  </div>
-);
-
 // Home component
 export default function Home() {
   const { isDarkMode } = useTheme(); // Get dark mode status

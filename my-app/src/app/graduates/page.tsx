@@ -5,7 +5,6 @@ import { TopicAnswerData } from "../helpers/interfaces";
 import { getData } from "../helpers/databaseFunctions";
 import GraduateDuckCard from "../components/GraduateDuckCard";
 import Link from "next/link";
-import { reloadPage } from "../helpers/generalFunctions";
 const DisplayStoredData = () => {
   const { isDarkMode } = useTheme();
 
