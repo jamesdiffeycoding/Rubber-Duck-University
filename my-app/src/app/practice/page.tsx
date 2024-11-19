@@ -208,18 +208,7 @@ export default function Home() {
                 </section>
               ) : (
                 <div className="text-center flex justify-center flex-wrap">
-                  <div className="flex flex-col items-center">
-                    {" "}
-                    {/* Allow items to stack */}
-                    <p>Nice work.</p>
-                    <img
-                      src={`/rubberduckgraduation.jpg`}
-                      alt={"duckgraduate"}
-                      className={`w-24 h-24 object-contain rounded-full border-4 border-solid ${
-                        isDarkMode ? "border-white" : "border-sky-700"
-                      }`}
-                    />
-                  </div>
+                  <div className="p-8">Nice work.</div>
 
                   <div className="w-full grid sm:w-[200px] justify-center text-white gap-8 p-4">
                     <button

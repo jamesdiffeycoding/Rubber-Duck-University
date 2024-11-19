@@ -118,19 +118,18 @@ const DisplayStoredData = () => {
           {/* Second div: Will fill the remaining vertical height of the parent */}
           <div className="flex flex-col justify-between text-center text-white bg-green-800 p-4 rounded-r-xl rounded-tr-xl">
             <div className="flex-1 flex flex-col justify-between">
-              {ranksOneThroughFiveArray.map((number, index) => {
-                return (
-                  <div key={index} className="">
-                    {rankAndDvision[1] == number ? (
-                      numberToRoman(number)
-                    ) : (
-                      <div className="bg-white rounded-md text-black font-bold">
-                        {numberToRoman(number)}
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
+              {ranksOneThroughFiveArray.map((number, index) => (
+                <div
+                  key={index}
+                  className={`${
+                    rankAndDvision[1] == number
+                      ? "bg-white rounded-md text-black font-bold"
+                      : ""
+                  }`}
+                >
+                  {numberToRoman(number)}
+                </div>
+              ))}
             </div>
           </div>
         </div>
