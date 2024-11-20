@@ -42,7 +42,7 @@ export default function ThreeSteps() {
       className={`w-full flex justify-center text-white rounded-xl ${
         isDarkMode
           ? "bg-gradient-to-r from-gray-800 via-gray-900 to-gray-800"
-          : "bg-gradient-to-r from-sky-400 via-sky-600 to-sky-400"
+          : "bg-gradient-to-r from-sky-500 via-sky-700 to-sky-400"
       }`}
     >
       <section

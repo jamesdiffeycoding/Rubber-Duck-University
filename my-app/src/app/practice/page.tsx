@@ -180,7 +180,7 @@ export default function Home() {
                     onChange={handleAnswerChange}
                     placeholder="Explain the topic in as much detail as you can."
                     rows={15}
-                    className={`flex-1 w-[90%] border p-2 rounded resize hover:bg-opacity-30 ${
+                    className={`flex-1 w-[90%] border p-2 rounded hover:bg-opacity-30 ${
                       isDarkMode
                         ? "bg-slate-700 text-gray-300"
                         : "bg-sky-300 placeholder-green-800"

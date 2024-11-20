@@ -6,6 +6,7 @@ interface CircleImageAndTextProps {
   altText: string;
   description: string;
   isDarkMode: boolean;
+  helpedCount: string;
 }
 
 // CircleImageAndText component
@@ -14,6 +15,7 @@ const CircleImageAndText = ({
   altText,
   description,
   isDarkMode,
+  helpedCount,
 }: CircleImageAndTextProps) => (
   <div className="flex flex-col items-center text-center">
     <div
@@ -31,7 +33,12 @@ const CircleImageAndText = ({
         style={{ borderColor: isDarkMode ? "#ffffff" : "#1F2937" }}
       />
     </div>
-    <p>{description}</p>
+    <div className="flex flex-col justify-between h-full">
+      <div className="flex-1 flex flex-col justify-center min-h-20">
+        <p className="text-lg max-w-[7rem]">{description}</p>
+      </div>
+      <p className="text-xs ">{helpedCount} ducks</p>
+    </div>
   </div>
 );
 
@@ -53,37 +60,48 @@ export default function Rankings() {
           <CircleImageAndText
             imageSrc="/ducks (3).jpg"
             altText="Teaching Assistant"
-            description="Teaching Assistant (1+ ducks helped)"
+            description="Teaching Assistant"
+            helpedCount="1"
             isDarkMode={isDarkMode}
           />
+
           <CircleImageAndText
             imageSrc="/ducks (5).jpg"
             altText="Seminar Leader"
-            description="Seminar Leader (20+ ducks helped)"
+            description="Seminar Leader"
+            helpedCount="20"
             isDarkMode={isDarkMode}
           />
+
           <CircleImageAndText
             imageSrc="/ducks (6).jpg"
-            altText="Lecturer"
-            description="Lecturer (100+ ducks helped)"
+            altText="Junior Lecturer"
+            description="Junior Lecturer"
+            helpedCount="100"
             isDarkMode={isDarkMode}
           />
+
           <CircleImageAndText
             imageSrc="/ducks (1).jpg"
             altText="Assistant Professor"
-            description="Assistant Professor (300+ ducks helped)"
+            description="Assistant Professor"
+            helpedCount="300"
             isDarkMode={isDarkMode}
           />
+
           <CircleImageAndText
             imageSrc="/duckwithnotebook.jpg"
             altText="Tenured Professor"
-            description="Tenured Professor (700+ ducks helped)"
+            description="Tenured Professor"
+            helpedCount="700"
             isDarkMode={isDarkMode}
           />
+
           <CircleImageAndText
             imageSrc="/duckprofessor.jpg"
             altText="Provost"
-            description="Provost (1000+ ducks helped)"
+            description="Provost"
+            helpedCount="1000"
             isDarkMode={isDarkMode}
           />
         </div>
