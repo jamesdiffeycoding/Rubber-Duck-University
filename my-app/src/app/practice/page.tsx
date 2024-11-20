@@ -207,7 +207,7 @@ export default function Home() {
                   </section>
                 </section>
               ) : (
-                <div className="text-center flex justify-center flex-wrap">
+                <div className="text-center flex flex-col justify-center flex-wrap">
                   <div className="p-8">Nice work.</div>
 
                   <div className="w-full grid sm:w-[200px] justify-center text-white gap-8 p-4">

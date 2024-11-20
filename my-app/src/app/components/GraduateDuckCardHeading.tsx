@@ -19,7 +19,14 @@ const GraduateDuckCardHeading = ({
         <hr className="flex-grow border-b-[0.5px] border border-gray-400" />
       </div>
       {category !== "date" ? (
-        <p>{item[category]}</p>
+        <p>
+          {item[category]?.split("\n").map((line, index) => (
+            <span key={index}>
+              {line}
+              <br />
+            </span>
+          ))}
+        </p>
       ) : (
         <p>{getRelativeTime(item[category])}</p>
       )}
