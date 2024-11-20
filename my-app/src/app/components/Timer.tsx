@@ -9,15 +9,14 @@ export default function Timer({
   const [timeRemaining, setTimeRemaining] = useState(timeOnClock * 60);
 
   useEffect(() => {
-    if (timeRemaining <= 0) return; // Stop when timeRemainingr reaches 0
+    if (timeRemaining <= 0) {
+      handleTimeRequirementComplete();
 
+      return; // Stop when timeRemainingr reaches 0
+    }
     const interval = setInterval(() => {
       setTimeRemaining((prevTimeRemaining) => prevTimeRemaining - 1);
     }, 1000);
-
-    if (timeRemaining <= 0) {
-      handleTimeRequirementComplete();
-    }
 
     return () => clearInterval(interval); // Cleanup interval on unmount or timeRemaining change
   }, [timeRemaining]);

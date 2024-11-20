@@ -20,8 +20,11 @@ export default function Home() {
     useState<boolean>(false);
   // Get the current theme from the ThemeContext
   const { isDarkMode }: { isDarkMode: boolean } = useTheme();
-  function removePunctuationFromEnd(str) {
-    return str.replace(/[^\w\s]+$/, "");
+  function removePunctuationFromEnd(str: string): string {
+    if (/[^\w\s]$/.test(str)) {
+      return str.slice(0, -1);
+    }
+    return str;
   }
   // Event handlers
 
