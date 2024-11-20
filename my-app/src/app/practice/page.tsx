@@ -20,7 +20,9 @@ export default function Home() {
     useState<boolean>(false);
   // Get the current theme from the ThemeContext
   const { isDarkMode }: { isDarkMode: boolean } = useTheme();
-
+  function removePunctuationFromEnd(str) {
+    return str.replace(/[^\w\s]+$/, "");
+  }
   // Event handlers
 
   const handleTopicChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -170,7 +172,8 @@ export default function Home() {
                   <div className="w-[80%] flex justify-between">
                     <label htmlFor="answerInput" className="block text-lg mb-2">
                       Help Ducky Duckerson prepare for an exam on
-                      <strong> {topic} </strong> by explaining the topic.
+                      <strong> {removePunctuationFromEnd(topic)} </strong> by
+                      explaining the topic.
                     </label>
                   </div>
                   {/* 3 */}
