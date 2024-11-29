@@ -6,3 +6,4 @@ Rubber Duck University forces you to engage in active recall and verbalization -
 
 Check out the BETA at:
 https://rubber-duck-university.vercel.app/
+
