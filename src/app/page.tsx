@@ -19,7 +19,7 @@ export default function Home() {
             <div className="flex flex-col justify-center pl-8">
               <div className="text-xl">
                 <strong className="text-2xl">Want to learn faster? </strong>
-                <p>Articulate your understanding for rapid results.</p>
+                <p>Articulate your learning for rapid results.</p>
               </div>
             </div>
           </section>
