@@ -1,4 +1,4 @@
-import { TopicAnswerData } from "../helpers/interfaces";
+import { TopicAnswerData } from "./interfaces";
 
 export const getData = () => {
   const data: TopicAnswerData[] = JSON.parse(
